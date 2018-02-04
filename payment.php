@@ -50,8 +50,8 @@ require('connection.php');
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li><a href="index2.php"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-			<li><a href="index2.php"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg><b>Registered Patients</b></a></li>
+			<li><a href="index2.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+			<li><a href="index2.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg><b>Registered Patients</b></a></li>
 			
 			<button class="btn btn-primary" ng-show="show_form" ng-click="formToggle()" style="margin-left:20px;"> <span class="glyphicon glyphicon-plus" aria-hidden="true" class="btn btn-info btn-lg" >Add Patient</span></button>
 			<br /><br />

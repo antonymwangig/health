@@ -27,7 +27,8 @@
            </script>
 </head>
 
-<body>
+<body ng-app="myApp">
+
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -53,28 +54,59 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 		
+		<div ng-controller="side_bar_menu">
 		<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<br /><br /><br />
 		<ul class="nav menu">
-			<li ><a href="index2.php"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+			<li  ng-model="home"><a><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
 			
-			<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Users</a></li>
+			<li ng-model="users"><a> <svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Users</a></li>
 			<br />
-<a href="payment.php">
-			<button class="btn btn-primary" ng-show="show_form" ng-click="formToggle()" style="margin-left:20px;"> <span class="glyphicon glyphicon-plus" aria-hidden="true" class="btn btn-info btn-lg" >Add Patient</span></button>
-			</a>
-			<br /><br />
-			<a href="attend.php"><button class="btn btn-primary" ng-show="show_form" ng-click="formToggle()" style="margin-left:20px;"> <span class="glyphicon glyphicon-plus" aria-hidden="true" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#myModal" >Attend Patient</span></button></a>
 
+			 <button class="btn btn-primary"  ng-click="register()" style="margin-left:20px;"> <span class="glyphicon glyphicon-plus" aria-hidden="true" class="btn btn-info btn-lg" >Add Patient</span></button>
 			
-			<li><a href="payment.php"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Payments</a></li>
-		
-			<li><a href="contact.php"><svg class="glyph stroked contact"><use xlink:href="#stroked-star"></use></svg>Contacts</a></li>
+			<br /><br />
+			<button class="btn btn-primary" "   ng-click="attend()" style="margin-left:20px;"> <span class="glyphicon glyphicon" aria-hidden="true" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#myModal" >Attend Patient</span></button>
+			<br />
+			<br />
+			<button class="btn btn-primary"   ng-click="view()" style="margin-left:20px;"> <span class="glyphicon glyphicon" aria-hidden="true" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#myModal" >View Submited Tests</span></button>
 				<li role="presentation" class="divider"></li>
-			<li><a href="logout.php"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Logout Page</a></li>
+			<li><a><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Logout Page</a></li>
 		</ul>
 		
 	</div><!--/.sidebar-->
+</div>
+<script type="text/javascript" src="js/angular.js"></script>
+<script>
+		var app=angular.module("myApp",[]);
+		app.controller("registered_patients",function($scope,$http){
+		$scope.title="Registered Patients";
+
+		$http({
+          method  : 'GET',
+          url     : 'registered_patients.php',
+          headers : { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' } 
+         }).then(function mySuccess(response) {
+				$scope.title=response.data.patients;			
+          },function myError(response){});});
+		app.controller("side_bar_menu",function($scope,$window){
+
+			$scope.register=function(){
+				$window.location.href="register.html";
+			};
+			$scope.attend=function(){
+				$window.location.href="attend.html";
+			};
+
+			$scope.view=function(){
+				$window.location.href="view.php";
+			};
+
+
+   		});
+
+
+</script>
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
 			<div class="col-lg-12">
